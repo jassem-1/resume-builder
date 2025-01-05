@@ -1,14 +1,16 @@
 "use client";
 
 import logo from "@/assets/logo.png";
+import ThemeToggle from "@/components/ThemeToggle";
 import { UserButton } from "@clerk/nextjs";
 import { CreditCard } from "lucide-react";
-
+import { useTheme } from "next-themes";
+import {dark} from "@clerk/themes"
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {
-
+const {theme} = useTheme();
   return (
     <header className="shadow-sm">
       <div className="flex items-center justify-between gap-3 p-3">
@@ -25,17 +27,20 @@ export default function Navbar() {
           </span>
         </Link>
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <UserButton
+          
             appearance={{
+              baseTheme: theme === "dark" ? dark : undefined,
               elements: {
                 avatarBox: {
-                  width: 25,
-                  height: 25,
+                  width: 35,
+                  height: 35,
                 },
               },
             }}
-         >
-                <UserButton.MenuItems>
+          >
+            <UserButton.MenuItems>
               <UserButton.Link
                 label="Billing"
                 labelIcon={<CreditCard className="size-4" />}
@@ -43,7 +48,6 @@ export default function Navbar() {
               />
             </UserButton.MenuItems>
           </UserButton>
-          
         </div>
       </div>
     </header>
