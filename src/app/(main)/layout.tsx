@@ -1,15 +1,13 @@
-import React from 'react'
-import Navbar from './Navbar'
+import React from "react";
+import Navbar from "./Navbar";
 
-function layout({ children }:{children:React.ReactNode}) {
+function layout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
-        <Navbar />
-      <div>
-        {children}
-      </div>
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      <div>{children}</div>
     </div>
-  )
+  );
 }
 
-export default layout
+export default layout;
